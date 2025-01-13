@@ -1,0 +1,2 @@
+set(__QT_DEPLOY_TARGET_CryptedMessenger_FILE /Users/jozo/CryptedMessenger/CryptedMessenger)
+set(__QT_DEPLOY_TARGET_CryptedMessenger_TYPE EXECUTABLE)
