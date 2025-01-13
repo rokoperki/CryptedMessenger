@@ -1,4 +1,5 @@
 #include "cryptPage.h"
+#include "algorithmOption.h"
 #include <QCryptographicHash>
 
 CryptPage::CryptPage(QWidget *parent) : QWidget(parent) {
@@ -24,15 +25,16 @@ CryptPage::CryptPage(QWidget *parent) : QWidget(parent) {
     connect(copyEncryptedTextButton, &QPushButton::clicked, this, &CryptPage::onCopyEncryptedTextButtonClicked);
 
     algorithmList = new QComboBox(this);
-    algorithmList->addItem("Cezarova sifra");
-    algorithmList->addItem("XOR sifra");
-    algorithmList->addItem("Obrnuta sifra");
+    for (const auto &algorithm : algorithms) {
+        algorithmList->addItem(algorithm.name);
+    }
 
     QVBoxLayout *mainLayout = new QVBoxLayout();
     QHBoxLayout *flexLayout = new QHBoxLayout();
     QVBoxLayout *inputLayout = new QVBoxLayout();
     QVBoxLayout *outputLayout = new QVBoxLayout();
     QVBoxLayout *buttonLayout = new QVBoxLayout();
+    QHBoxLayout *saveButtonsLayout = new QHBoxLayout();
 
     inputLayout->addWidget(inputLabel);
     inputLayout->addWidget(inputField);
@@ -52,10 +54,14 @@ CryptPage::CryptPage(QWidget *parent) : QWidget(parent) {
     flexLayout->addLayout(buttonLayout);
     flexLayout->addLayout(outputLayout);
 
+    saveButtonsLayout->addStretch();
+    saveButtonsLayout->addWidget(saveToFileButton);
+    saveButtonsLayout->addWidget(copyEncryptedTextButton);
+    saveButtonsLayout->addStretch();
+
     mainLayout->addLayout(flexLayout);
     mainLayout->addSpacing(90);
-    mainLayout->addWidget(saveToFileButton);
-    mainLayout->addWidget(copyEncryptedTextButton);
+    mainLayout->addLayout(saveButtonsLayout);
     mainLayout->addStretch();
 
     setLayout(mainLayout);
@@ -66,17 +72,15 @@ void CryptPage::onEncryptButtonClicked() {
     QString selectedAlgorithm = algorithmList->currentText();
     QString encryptedText;
 
-    if (selectedAlgorithm == "Cezarova sifra") {
-        encryptedText = encryptAlgorithm1(inputText);
-    } else if (selectedAlgorithm == "XOR sifra") {
-        encryptedText = encryptAlgorithm2(inputText);
-    } else if (selectedAlgorithm == "Obrnuta sifra") {
-        encryptedText = encryptAlgorithm3(inputText);
+    for (const auto &algorithm : algorithms) {
+        if (algorithm.name == selectedAlgorithm) {
+            encryptedText = algorithm.encryptFunction(inputText);
+            break;
+        }
     }
 
     outputField->setPlainText(encryptedText);
 }
-
 
 void CryptPage::onSaveToFileButtonClicked() {
     QString outputText = outputField->toPlainText();
@@ -98,33 +102,4 @@ void CryptPage::onCopyEncryptedTextButtonClicked() {
     QString encryptedText = outputField->toPlainText();
     QClipboard *clipboard = QGuiApplication::clipboard();
     clipboard->setText(encryptedText);
-}
-
-QString CryptPage::encryptAlgorithm1(const QString &input) {
-    QString result;
-    for (QChar c : input) {
-        result.append(QChar(c.unicode() + 1));
-    }
-    return result;
-}
-
-QString CryptPage::encryptAlgorithm2(const QString &input) {
-    QString result;
-    for (QChar c : input) {
-        result.append(QChar(c.unicode() ^ 0x55));
-    }
-    return result;
-}
-
-QString CryptPage::encryptAlgorithm3(const QString &input) {
-    
-    QString result;
-
-    for (QChar c : input) {
-        result.append(QChar(c.unicode() + 3));
-    }
-
-    std::reverse(result.begin(), result.end());
-
-    return result;
 }

@@ -13,6 +13,7 @@
 #include <QCryptographicHash>
 #include <QClipboard>
 #include <QGuiApplication>
+#include "algorithmOption.h"
 
 class CryptPage : public QWidget {
     Q_OBJECT
@@ -31,10 +32,6 @@ private:
     QPushButton *saveToFileButton;
     QPushButton *copyEncryptedTextButton;
     QComboBox *algorithmList;
-
-    QString encryptAlgorithm1(const QString &input);
-    QString encryptAlgorithm2(const QString &input);
-    QString encryptAlgorithm3(const QString &input);
 };
 
 #endif // CRYPTPAGE_H

@@ -17,13 +17,15 @@ set(SOURCES
     src/decryptPage.cpp
     src/cryptPage.cpp
     src/fileLoadPage.cpp
+    src/algorithmOption.cpp
 )
 
 # Add header files for moc
 set(HEADERS
-src/decryptPage.h
-src/cryptPage.h
-src/fileLoadPage.h
+    src/decryptPage.h
+    src/cryptPage.h
+    src/fileLoadPage.h
+    src/algorithmOption.h
 )
 
 # Run moc on header files
