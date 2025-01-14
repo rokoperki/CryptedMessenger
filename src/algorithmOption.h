@@ -19,7 +19,17 @@ public:
     static QString decryptReverse(const QString &input);
 };
 
-// Declare the global algorithms array
-extern std::vector<AlgorithmOption> algorithms;
+class SafeMessagesOption {
+public:
+    QString name;
+    std::function<QString(const QString &, const QString &key)> encryptFunction;
+    std::function<QString(const QString &, const QString &key)> decryptFunction;
 
-#endif // ALGORITHMOPTION_H
+    static QString encryptSafeMessages(const QString &input, const QString &key);
+    static QString decryptSafeMessages(const QString &input, const QString &key);
+};
+
+extern std::vector<AlgorithmOption> algorithms;
+extern std::vector<SafeMessagesOption> safeMessagesAlgorithms;
+
+#endif 

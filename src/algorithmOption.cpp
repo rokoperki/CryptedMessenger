@@ -1,11 +1,14 @@
 #include "algorithmOption.h"
 #include <algorithm>
 
-// Define the global algorithms array
 std::vector<AlgorithmOption> algorithms = {
     {"Caesar cipher", AlgorithmOption::encryptCaesar, AlgorithmOption::decryptCaesar},
     {"XOR cipher", AlgorithmOption::encryptXOR, AlgorithmOption::decryptXOR},
     {"Reverse cipher", AlgorithmOption::encryptReverse, AlgorithmOption::decryptReverse}
+};
+
+std::vector<SafeMessagesOption> safeMessagesAlgorithms = {
+    {"Safe Messages", SafeMessagesOption::encryptSafeMessages, SafeMessagesOption::decryptSafeMessages}
 };
 
 QString AlgorithmOption::encryptCaesar(const QString &input) {
@@ -56,4 +59,16 @@ QString AlgorithmOption::decryptReverse(const QString &input) {
         result[i] = QChar(result[i].unicode() - 3);
     }
     return result;
+}
+
+QString SafeMessagesOption::encryptSafeMessages(const QString &input, const QString &key) {
+    QString result;
+    for (int i = 0; i < input.size(); ++i) {
+        result.append(QChar(input[i].unicode() ^ key[i % key.size()].unicode()));
+    }
+    return result;
+}
+
+QString SafeMessagesOption::decryptSafeMessages(const QString &input, const QString &key) {
+    return encryptSafeMessages(input, key);
 }

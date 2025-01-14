@@ -16,7 +16,7 @@ set(SOURCES
     src/main.cpp
     src/decryptPage.cpp
     src/cryptPage.cpp
-    src/fileLoadPage.cpp
+    src/safeMessagesPage.cpp
     src/algorithmOption.cpp
 )
 
@@ -24,7 +24,7 @@ set(SOURCES
 set(HEADERS
     src/decryptPage.h
     src/cryptPage.h
-    src/fileLoadPage.h
+    src/safeMessagesPage.h
     src/algorithmOption.h
 )
 

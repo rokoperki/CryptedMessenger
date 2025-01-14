@@ -10,7 +10,7 @@
 #include <QSize>
 #include "cryptPage.h"
 #include "decryptPage.h"
-#include "fileLoadPage.h"
+#include "safeMessagesPage.h"
 
 class CustomDelegate : public QStyledItemDelegate {
 public:
@@ -33,12 +33,12 @@ int main(int argc, char *argv[]) {
 
     CryptPage *cryptPage = new CryptPage();
     DecryptPage *decryptPage = new DecryptPage();
-    FileLoadPage *fileLoadPage = new FileLoadPage();
+    SafeMessagesPage *safeMessagesPage = new SafeMessagesPage();
 
 
     stackedWidget->addWidget(cryptPage);
     stackedWidget->addWidget(decryptPage);
-    stackedWidget->addWidget(fileLoadPage);
+    stackedWidget->addWidget(safeMessagesPage);
 
     QDockWidget *dockWidget = new QDockWidget("Opcije", &mainWindow);
     dockWidget->setMaximumWidth(120);
@@ -48,7 +48,7 @@ int main(int argc, char *argv[]) {
     QListWidget *listWidget = new QListWidget(dockWidget);
     listWidget->addItem("Kriptiraj");
     listWidget->addItem("Dekriptiraj");
-    listWidget->addItem("Ucitaj iz datoteke");
+    listWidget->addItem("Safe Messaging");
 
     listWidget->setItemDelegate(new CustomDelegate(listWidget));
 

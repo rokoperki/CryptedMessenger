@@ -4,10 +4,10 @@
 #include <QWidget>
 #include <QLabel>
 
-class FileLoadPage : public QWidget {
+class SafeMessagesPage : public QWidget {
     Q_OBJECT
 public:
-    FileLoadPage(QWidget *parent = nullptr);
+    SafeMessagesPage(QWidget *parent = nullptr);
 };
 
 #endif // SCREEN3_H
