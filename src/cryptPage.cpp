@@ -105,19 +105,26 @@ void CryptPage::onSaveToFileButtonClicked()
     QMessageBox::StandardButton reply;
     reply = QMessageBox::question(this, "Verify Save", "Do you want to save the file?",
     QMessageBox::Yes | QMessageBox::No);
-
     if (reply == QMessageBox::Yes)
     {
-        QString fileName = QFileDialog::getSaveFileName(this, "Save file", "", "Binary files (*.bin)");
+        QString fileName = QFileDialog::getSaveFileName(this, "Save file", "", "Binary files (*.bin);;Text files (*.txt)");
 
         if (!fileName.isEmpty())
         {
             QFile file(fileName);
             if (file.open(QIODevice::WriteOnly))
             {
-                QDataStream stream(&file);
-                stream << outputText;
-                stream << hash;
+                if (fileName.endsWith(".bin"))
+                {
+                    QDataStream stream(&file);
+                    stream << outputText;
+                    stream << hash;
+                }
+                else if (fileName.endsWith(".txt"))
+                {
+                    QTextStream stream(&file);
+                    stream << outputText;
+                }
                 file.close();
             }
         }

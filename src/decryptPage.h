@@ -23,12 +23,14 @@ public:
 private slots:
     void onDecryptButtonClicked();
     void onCopyDecryptedTextButtonClicked();
+    void onLoadFromFileButtonClicked();
 
 private:
     QTextEdit *inputField;
     QTextEdit *outputField;
     QPushButton *decryptButton;
     QPushButton *copyDecryptedTextButton;
+    QPushButton *LoadFromFileButton;
     QComboBox *algorithmList;
 };
 
