@@ -50,32 +50,6 @@ CryptedMessenger is a Qt-based application that provides encryption and decrypti
   - `algorithmOption.cpp`: Implements the encryption and decryption algorithms.
 - `CMakeLists.txt`: CMake configuration file for building the project.
 
-## Usage
-
-### Encrypting Text
-
-1. Enter the text to be encrypted in the input field.
-2. Select the desired encryption algorithm.
-3. Click the "Encrypt" button.
-4. The encrypted text will be displayed in the output field.
-5. You can copy the encrypted text to the clipboard or save it to a file.
-
-### Decrypting Text
-
-1. Enter the text to be decrypted in the input field.
-2. Select the desired decryption algorithm.
-3. Click the "Decrypt" button.
-4. The decrypted text will be displayed in the output field.
-5. You can copy the decrypted text to the clipboard or load it from a file.
-
-### Safe Messaging
-
-1. Enter the text to be encrypted or decrypted in the input field.
-2. Enter the key in the key field.
-3. Click the "Encrypt" or "Decrypt" button.
-4. The result will be displayed in the output field.
-5. You can copy the text to the clipboard or save it to a file.
-
 ## License
 
 This project is licensed under the MIT License.
