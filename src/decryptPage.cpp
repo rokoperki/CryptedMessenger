@@ -10,12 +10,12 @@ DecryptPage::DecryptPage(QWidget *parent) : QWidget(parent) {
     QLabel *inputLabel = new QLabel("Input:", this);
     inputField = new QTextEdit(this);
     inputField->setPlaceholderText("Enter text to decrypt");
-    inputField->setFixedHeight(300); // Set a fixed height for the input field
+    inputField->setFixedHeight(300); 
 
     QLabel *outputLabel = new QLabel("Output:", this);
     outputField = new QTextEdit(this);
     outputField->setReadOnly(true);
-    outputField->setFixedHeight(300); // Set a fixed height for the output field
+    outputField->setFixedHeight(300);
 
     decryptButton = new QPushButton("Decrypt", this);
     connect(decryptButton, &QPushButton::clicked, this, &DecryptPage::onDecryptButtonClicked);

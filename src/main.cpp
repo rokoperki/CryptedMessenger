@@ -40,14 +40,14 @@ int main(int argc, char *argv[]) {
     stackedWidget->addWidget(decryptPage);
     stackedWidget->addWidget(safeMessagesPage);
 
-    QDockWidget *dockWidget = new QDockWidget("Opcije", &mainWindow);
+    QDockWidget *dockWidget = new QDockWidget("Options", &mainWindow);
     dockWidget->setMaximumWidth(120);
     dockWidget->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
     dockWidget->setFeatures(QDockWidget::NoDockWidgetFeatures);
 
     QListWidget *listWidget = new QListWidget(dockWidget);
-    listWidget->addItem("Kriptiraj");
-    listWidget->addItem("Dekriptiraj");
+    listWidget->addItem("Encrypt");
+    listWidget->addItem("Decrypt");
     listWidget->addItem("Safe Messaging");
 
     listWidget->setItemDelegate(new CustomDelegate(listWidget));
